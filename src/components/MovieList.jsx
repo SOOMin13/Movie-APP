@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom';
-import MovieCard from './movieCard';
+import MovieCard from './MovieCard';
+import NavBar from './NavBar';
 
 export default function MovieList({ movies }) {
 	return (
-		<div className='flex justify-center items-center flex-wrap py-8'>
-			{movies.map((movie) => (
-				<Link key={movie.id} to={`/details`}>
-					<MovieCard
-						posterPath={movie.poster_path}
-						title={movie.title}
-						voteAverage={movie.vote_average}
-					/>
-				</Link>
-			))}
-		</div>
+		<>
+			<NavBar />
+			<div className='flex justify-center items-center flex-wrap py-8'>
+				{movies.map((movies) => (
+					<Link key={movies.id} to={`/details/${movies.id}`}>
+						<MovieCard movies={movies} />
+					</Link>
+				))}
+			</div>
+		</>
 	);
 }
