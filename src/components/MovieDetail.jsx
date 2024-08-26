@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NavBar from './NavBar';
-const TOKEN = import.meta.env.VITE_API_TOKEN;
 
 export default function MovieDetail({ movies }) {
-	const [detail, setDetail] = useState(null);
+	const TOKEN = import.meta.env.VITE_API_TOKEN;
 	const BASE_URL = 'https://api.themoviedb.org/3';
 	const { id } = useParams();
+	const [detail, setDetail] = useState(null);
 	const clickedMovie = movies.find((movie) => movie.id === Number(id));
 
 	// filter: 배열에서 조건을 만족하는 요소만을 선택하여 새로운 배열 리턴.

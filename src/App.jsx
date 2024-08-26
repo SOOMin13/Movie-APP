@@ -5,10 +5,11 @@ import { Route, Routes } from 'react-router-dom';
 import MovieList from './components/MovieList';
 import LogIn from './components/LogIn';
 import Join from './components/Join';
-const TOKEN = import.meta.env.VITE_API_TOKEN;
+import Search from './components/Search';
 
 function App() {
 	const [movies, setMovies] = useState([]);
+	const TOKEN = import.meta.env.VITE_API_TOKEN;
 	const BASE_URL = 'https://api.themoviedb.org/3';
 
 	// movieListData는 배열이 아님.
@@ -42,7 +43,8 @@ function App() {
 				<Route path='/' element={<MovieList movies={movies} />} />
 				<Route path='/details/:id' element={<MovieDetail movies={movies} />} />
 				<Route path='/login' element={<LogIn />} />
-				<Route path='/Join' element={<Join />} />
+				<Route path='/join' element={<Join />} />
+				<Route path='/search' element={<Search />} />
 			</Routes>
 		</>
 	);
