@@ -1,7 +1,17 @@
-import { Link } from 'react-router-dom';
-import Search from './Search';
+import { Link, useNavigate } from 'react-router-dom';
+import useDebounce from '../hook/useDebounce';
+import { useEffect } from 'react';
 
 export default function NavBar({ inputText, setInputText }) {
+	const navigate = useNavigate();
+	const debouncedInput = useDebounce(inputText, 3000);
+
+	useEffect(() => {
+		if (debouncedInput) {
+			navigate('/Search');
+		}
+	}, [debouncedInput]);
+
 	return (
 		<div className='flex justify-between items-center bg-[#b9d9fc] h-[60px]'>
 			<Link to={'/'}>
@@ -18,6 +28,7 @@ export default function NavBar({ inputText, setInputText }) {
 					<input
 						type='text'
 						value={inputText}
+						autoFocus
 						onChange={(event) => {
 							setInputText(event.target.value);
 						}}

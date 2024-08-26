@@ -5,8 +5,8 @@ import NavBar from './NavBar';
 const TOKEN = import.meta.env.VITE_API_TOKEN;
 const BASE_URL = 'https://api.themoviedb.org/3';
 
-export default function Search() {
-	const [inputText, setInputText] = useState('');
+export default function Search({ inputText, setInputText }) {
+	// const [inputText, setInputText] = useState('');
 	// 사용자가 입력한 input 값. 최초값은 빈 문자열이다.
 	const [searchValue, setSearchValue] = useState([]);
 	//inputText의 결과로 api에서 받아온 데이터 목록을 저장하는 상태
