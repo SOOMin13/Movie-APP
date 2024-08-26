@@ -52,22 +52,29 @@ export default function MovieDetail({ movies }) {
 	return (
 		<>
 			<NavBar />
-			<div className='flex flex-row justify-center items-center'>
+			<div
+				className='flex flex-col justify-center items-center
+			sm:flex-col md:flex-row lg:flex-row lg:mx-10'
+			>
 				<img
-					className='w-[440px] h-[500px] m-7'
+					className=' w-[17rem] h-[23rem] 
+					sm:w-[22rem] sm:h-[29rem] 
+					md:w-[29rem] md:h-[35rem] m-7
+					lg:ml-2'
 					src={posterUrl}
 					alt={clickedMovie.title}
 				/>
-				<div>
-					<h2 className='text-[40px]  '>{clickedMovie.title}</h2>
-					<p className='text-[20px]'>{clickedMovie.vote_average}</p>
-					<ul className='flex gap-3'>
+				<div className='p-2 m-0 '>
+					<h2 className=' flex justify-center items-center text-[2rem] sm:text-[3rem] '>
+						{clickedMovie.title}
+					</h2>
+					<p className=' flex justify-end m-2 text-[20px]'>
+						⭐️ {clickedMovie.vote_average}
+					</p>
+					<ul className='flex m-3 gap-3'>
 						{detail?.genres.map((genreId) => {
 							return (
-								<li
-									key={genreId.id}
-									className='bg-orange-200 p-1 rounded-[5px]'
-								>
+								<li key={genreId.id} className='bg-sky-200 p-1 rounded-[5px]'>
 									{genreId.name}
 								</li>
 							);
@@ -76,7 +83,9 @@ export default function MovieDetail({ movies }) {
 		 null, undefined일 때는 바로 undefined를 반환하고, 
 		 그 결과로 뒤따르는 속성에 접근하려는 시도가 멈추는 것. */}
 					</ul>
-					<p>{clickedMovie.overview}</p>
+					<p className='w-full md:text-[1.1rem] lg:text-[1.2rem]'>
+						{clickedMovie.overview}
+					</p>
 				</div>
 			</div>
 		</>

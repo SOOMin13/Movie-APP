@@ -3,9 +3,11 @@ import Search from './Search';
 
 export default function NavBar({ inputText, setInputText }) {
 	return (
-		<div className='flex justify-around items-center bg-[#b9d9fc] h-[60px]'>
-			<h1>Suve ⋰˚✩ </h1>
-			<div className='flex justify-around'>
+		<div className='flex justify-between items-center bg-[#b9d9fc] h-[60px]'>
+			<Link to={'/'}>
+				<h1 className='mx-6'> Suve ⋰˚✩ </h1>
+			</Link>
+			<div className='flex justify-between w-[650px]'>
 				<Link to={'/login'}>
 					<button className=' border-[1px] rounded-lg p-1'>Log in</button>
 				</Link>
@@ -20,8 +22,8 @@ export default function NavBar({ inputText, setInputText }) {
 							setInputText(event.target.value);
 						}}
 					/>
+					<button>🔍</button>
 				</Link>
-				<button>🔍</button>
 			</div>
 		</div>
 	);

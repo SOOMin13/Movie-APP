@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import useDebounce from '../hook/useDebounce';
 import NavBar from './NavBar';
-import { getRegExp } from 'korean-regexp';
 
 const TOKEN = import.meta.env.VITE_API_TOKEN;
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -12,7 +11,7 @@ export default function Search() {
 	const [searchValue, setSearchValue] = useState([]);
 	//inputText의 결과로 api에서 받아온 데이터 목록을 저장하는 상태
 
-	const debouncedInputText = useDebounce(inputText, 5000);
+	const debouncedInputText = useDebounce(inputText, 3000);
 	//debounced되어 최종적으로 전달되는 검색어 값
 
 	useEffect(() => {
@@ -45,26 +44,24 @@ export default function Search() {
 			if (searchData.results) {
 				setSearchValue(searchData.results);
 			} // searchData.results 값이 참이면 검색 결과 데이터를 보여주는 상태에 fetch된 data를 저장.
-
-			
 		} catch (error) {
 			console.error('search page Error :', error);
 		}
 	}
-	
+
 	return (
 		<>
 			<NavBar inputText={inputText} setInputText={setInputText} />
 			<div>
-				{searchValue.map((movie) => {
-					<SearchMovieCard key={movie.id} movie={movie} />;
-				})}
+				{searchValue.map((movie) => (
+					<SearchMovieCard key={movie.id} movie={movie} />
+				))}
 			</div>
 		</>
 	);
 }
 
-function SearchMovieCard({ movie }) {
+function SearchMovieCard({ movie, debouncedInputText }) {
 	const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 	return (
 		<>
@@ -73,6 +70,7 @@ function SearchMovieCard({ movie }) {
 					src={posterUrl}
 					alt={`Movie poster of your search results : ${debouncedInputText}`}
 				/>
+				<div>{movie.title}</div>
 			</div>
 		</>
 	);

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
 export default function useDebounce(value, delay) {
-	//value: 디바운스 하고 싶은 입력값
+	//value: 디바운스 하고 싶은 값
 	//delay: 딜레이 주려는 밀리초
 
 	const [debouncedValue, setDebouncedValue] = useState(value);
-	// 디바운스를 적용할 입력값을 상태로 관리함.
+	// 디바운스를 적용할 값을 상태로 관리함.
 
 	useEffect(() => {
 		const debounceHandler = setTimeout(() => {
