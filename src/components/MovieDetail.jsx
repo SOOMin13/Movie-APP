@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NavBar from './NavBar';
 
-export default function MovieDetail({ movies }) {
+export default function MovieDetail({ movies, user, handleLogout }) {
 	const TOKEN = import.meta.env.VITE_API_TOKEN;
 	const BASE_URL = 'https://api.themoviedb.org/3';
 	const { id } = useParams();
